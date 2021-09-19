@@ -23,9 +23,6 @@ app.use((req, res, next) => {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  // Content Type
-  res.setHeader("Content-Type", "text/plain");
-
   // Request methods you wish to allow
   res.setHeader(
     'Access-Control-Allow-Methods',
