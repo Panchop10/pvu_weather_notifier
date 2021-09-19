@@ -24,7 +24,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
   // Content Type
-  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Content-Type", "text/plain");
 
   // Request methods you wish to allow
   res.setHeader(

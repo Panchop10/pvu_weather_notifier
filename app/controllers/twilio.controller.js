@@ -7,6 +7,6 @@ module.exports = {
 
   receiveMessage: async (req, res, next) => {
     console.log(req)
-    res.status(200).send(response.getResponseCustom(200, {}));
+    res.status(200).send("sucess");
   },
 };
