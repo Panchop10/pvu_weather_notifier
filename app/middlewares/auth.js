@@ -1,36 +1,51 @@
-const jwt = require('jsonwebtoken');
+const models = require('../models');
 
-// nota: verificar token, hay que formatear las respuetas.
+const twilio = require('twilio');
+const moment = require('moment');
+
+// check that the user requests just once per day to the API if is not an admin
 // eslint-disable-next-line consistent-return
 const authMiddleware = async (req, res, next) => {
   try {
-    let token = req.headers.authorization;
+    if (!req.body.WaId) throw Error('Bad request');
 
-    if (!token) throw new CustomError('Token was not found', 403);
-
-    // The token has to start with "Bearer "
-    if (token.slice(0, 7) !== 'Bearer ') throw new CustomError('Token is invalid', 401);
-
-    // we delete bearer this part before checking
-    token = token.slice(7);
-
-    // eslint-disable-next-line consistent-return
-    await jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, user) => {
-      if (err) throw new CustomError('Token has expired', 401);
-
-      req.user = user;
-      next();
+    // check phone number in the database
+    const user = await models.phone_number.findOne({
+      where: {
+        phone: req.body.WaId
+      },
     });
+
+    // throw error if user doesn't exist
+    if (!user) throw Error('User not registered');
+
+    // thrown error if user already requested the api once and its not an admin
+    if (user.last_request !== null){
+      if (!moment(user.last_request).tz('UTC').isBefore(moment().tz('UTC'), 'day') && !user.admin){
+        throw Error('You already requested the information for today, try again tomorrow');
+      }
+    }
+
+    // continue if no error was found and save last request time for the user
+    user.last_request = moment().tz('UTC')
+    user.save()
+
+    //save admin variable in req
+    req.body.admin = user.admin
+    req.body.phone_number_id = user.phone_number_id
+
+    next();
+
   } catch (err) {
-    next(err);
+    // Send error message to Twilio
+    const response = new twilio.twiml.MessagingResponse();
+
+    response.message(err.message);
+    res.set('Content-Type', 'text/xml');
+    res.send(response.toString());
   }
 };
 
-const generateAccessToken = (user) =>
-  // expires after half and hour (1800 seconds = 300 minutes = 5 hours)
-  jwt.sign(user, process.env.JWT_SECRET_KEY, { expiresIn: '18000s' });
-
 module.exports = {
   authMiddleware,
-  generateAccessToken,
 };

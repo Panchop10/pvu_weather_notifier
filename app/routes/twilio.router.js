@@ -1,11 +1,11 @@
+const models = require('../models');
 const express = require('express');
 
 const router = express.Router();
 const controllers = require('../controllers/index');
-//const { authMiddleware } = require('../middlewares/auth.js');
+const { authMiddleware } = require('../middlewares/auth.js');
 
-router.post('/', [], controllers.twilio.receiveMessage);
-//router.put('/profile', [ authMiddleware ], controllers.usersController.updateProfile);
+router.post('/', [ authMiddleware ], controllers.twilio.receiveMessage);
 
 module.exports = {
   basePath: '/v1/twilio',

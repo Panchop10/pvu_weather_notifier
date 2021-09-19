@@ -1,3 +1,5 @@
+const twilio = require('twilio');
+
 const code = {
   100: 'Continue',
   101: 'Switching Protocols',
@@ -113,10 +115,20 @@ const getResponseCustom = (codeResp, data) => {
   return msg;
 };
 
+// send success message back
+const sendTwilioMessage = (message, res) => {
+  const response = new twilio.twiml.MessagingResponse();
+  response.message(message);
+  res.set('Content-Type', 'text/xml');
+  res.send(response.toString());
+}
+
+
 const serviceUtil = {};
 serviceUtil.getErrorResponse = getErrorResponse;
 serviceUtil.getErrorResponseCustom = getErrorResponseCustom;
 serviceUtil.getResponse = getResponse;
 serviceUtil.getResponseCustom = getResponseCustom;
+serviceUtil.sendTwilioMessage = sendTwilioMessage;
 
 module.exports = serviceUtil;

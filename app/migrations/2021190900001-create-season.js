@@ -1,20 +1,14 @@
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('weather_day', {
-      id: {
+    await queryInterface.createTable('season', {
+      season_id: {
         allowNull: false,
         autoIncrement: true,
         type: DataTypes.INTEGER,
         primaryKey: true,
       },
-      weather: {
+      name: {
         type: DataTypes.STRING,
-      },
-      season: {
-        type: DataTypes.STRING,
-      },
-      date: {
-        type: DataTypes.DATE,
       },
       created_at: {
         allowNull: false,
@@ -31,6 +25,6 @@ module.exports = {
     });
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('weather_day');
+    await queryInterface.dropTable('season');
   },
 };
