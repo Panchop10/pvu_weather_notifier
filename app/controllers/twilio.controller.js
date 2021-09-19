@@ -7,6 +7,9 @@ module.exports = {
 
   receiveMessage: async (req, res, next) => {
     console.log(req)
+
+    // Content Type
+    res.setHeader("Content-Type", "text/plain");
     res.status(200).send("sucess");
   },
 };
