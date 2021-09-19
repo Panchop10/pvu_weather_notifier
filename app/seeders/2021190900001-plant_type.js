@@ -5,39 +5,39 @@ module.exports = {
       [
         {
           plant_type_id: 1,
-          name: 'METAL',
+          name: 'Metal',
         },
         {
           plant_type_id: 2,
-          name: 'DARK',
+          name: 'Dark',
         },
         {
           plant_type_id: 3,
-          name: 'LIGHT',
+          name: 'Light',
         },
         {
           plant_type_id: 4,
-          name: 'WATER',
+          name: 'Water',
         },
         {
           plant_type_id: 5,
-          name: 'ICE',
+          name: 'Ice',
         },
         {
           plant_type_id: 6,
-          name: 'WIND',
+          name: 'Wind',
         },
         {
           plant_type_id: 7,
-          name: 'ELECTRO',
+          name: 'Electro',
         },
         {
           plant_type_id: 8,
-          name: 'FIRE',
+          name: 'Fire',
         },
         {
           plant_type_id: 9,
-          name: 'PARASITE',
+          name: 'Parasite',
         },
       ],
       {},
