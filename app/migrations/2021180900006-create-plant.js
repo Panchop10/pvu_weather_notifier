@@ -15,8 +15,13 @@ module.exports = {
           key: 'phone_number_id',
         },
       },
-      type: {
-        type: DataTypes.STRING,
+      plant_type_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'plant_type',
+          key: 'plant_type_id',
+        },
       },
       land: {
         type: DataTypes.STRING,
