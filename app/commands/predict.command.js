@@ -100,7 +100,7 @@ module.exports = {
         })
 
         // calculate probabilities and show results
-        let msg_prediction = "Based on probabilities, it is recommended to user a grenhouse if the following plants:\n"
+        let msg_prediction = "Based on probabilities, it is recommended to put the following plants in a grenhouse:\n"
         let counter_greenhouse = 0
 
         await Promise.all(total_plants.map(async plant => {
