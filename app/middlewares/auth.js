@@ -1,6 +1,6 @@
 const models = require('../models');
+const response = require('../functions/serviceUtil.js');
 
-const twilio = require('twilio');
 const moment = require('moment');
 
 // check that the user requests just once per day to the API if is not an admin
@@ -20,11 +20,11 @@ const authMiddleware = async (req, res, next) => {
     if (!user) throw Error('User not registered');
 
     // thrown error if user already requested the api once and its not an admin
-    if (user.last_request !== null){
-      if (!moment(user.last_request).tz('UTC').isBefore(moment().tz('UTC'), 'day') && !user.admin){
-        throw Error('You already requested the information for today, try again tomorrow');
-      }
-    }
+    // if (user.last_request !== null){
+    //   if (!moment(user.last_request).tz('UTC').isBefore(moment().tz('UTC'), 'day') && !user.admin){
+    //     throw Error('You already requested the information for today, try again tomorrow');
+    //   }
+    // }
 
     // continue if no error was found and save last request time for the user
     user.last_request = moment().tz('UTC')
@@ -38,11 +38,7 @@ const authMiddleware = async (req, res, next) => {
 
   } catch (err) {
     // Send error message to Twilio
-    const response = new twilio.twiml.MessagingResponse();
-
-    response.message(err.message);
-    res.set('Content-Type', 'text/xml');
-    res.send(response.toString());
+    return response.sendTwilioMessage(err.message, res)
   }
 };
 

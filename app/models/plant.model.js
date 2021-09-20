@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'phone_number_id',
         targetKey: 'phone_number_id',
       });
+      models.plant.belongsTo(models.plant_type, {
+        foreignKey: 'plant_type_id',
+        targetKey: 'plant_type_id',
+      });
     }
   }
   Plant.init(
@@ -25,8 +29,13 @@ module.exports = (sequelize, DataTypes) => {
           key: 'phone_number_id',
         },
       },
-      type: {
-        type: DataTypes.STRING,
+      plant_type_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'plant_type',
+          key: 'plant_type_id',
+        },
       },
       land: {
         type: DataTypes.STRING,

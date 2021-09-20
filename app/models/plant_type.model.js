@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         through: models.weather_event_plant,
         foreignKey: 'plant_type_id',
       });
+      models.plant_type.hasMany(models.plant, {
+        foreignKey: 'plant_type_id',
+        targetKey: 'plant_type_id',
+      });
     }
   }
   PlantType.init(

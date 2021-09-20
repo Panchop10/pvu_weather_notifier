@@ -21,17 +21,17 @@ module.exports = {
 
       // check /listplants command
       if (req.body.Body.startsWith("/listplants")){
-        return await weatherCommand.weather(req, res)
+        return await commands.plants.index(req, res)
       }
 
       // check /registerplant command
       if (req.body.Body.startsWith("/registerplant")){
-        return await weatherCommand.weather(req, res)
+        return await commands.plants.register(req, res)
       }
 
       // check /deleteplant command
       if (req.body.Body.startsWith("/deleteplant")){
-        return await weatherCommand.weather(req, res)
+        return await commands.plants.destroy(req, res)
       }
 
       // check if the weather for today has been registered
@@ -53,8 +53,8 @@ module.exports = {
       }
 
       // check /prediction command
-      if (req.body.Body.startsWith("/prediction")){
-        return await weatherCommand.weather(req, res)
+      if (req.body.Body.startsWith("/predict")){
+        return await commands.predict.index(req, res)
       }
 
       const welcome_message = "Welcome to PVU weather prediction notifier. \n"+

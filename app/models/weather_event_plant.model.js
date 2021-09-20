@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'plant_type_id',
         targetKey: 'plant_type_id',
       });
+      models.weather_event_plant.belongsTo(models.season, {
+        foreignKey: 'season_id',
+        targetKey: 'season_id',
+      });
     }
   }
   WeatherEventPlant.init(
@@ -38,6 +42,14 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: 'plant_type',
           key: 'plant_type_id',
+        },
+      },
+      season_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'season',
+          key: 'season_id',
         },
       },
     },
