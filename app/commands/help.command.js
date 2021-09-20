@@ -23,9 +23,9 @@ module.exports = {
         "List all commands: /help\n"+
         "Register new weather (requires admin permission): /weather NEWWEATHER\n"+
         "List all plants registered: /listplants\n"+
-        "Register a new plant: /registerplant PLANT_ID PLANT_TYPE LAND_CUSTOM_NAME\n"+
+        "Register a new plant: /registerplant PLANT_ID PLANT_ELEMENT LAND_CUSTOM_NAME\n"+
         "Delete a plant: /deleteplant PLANT_ID\n"+
-        "Display which plants require a greenhouse for next day: /prediction\n"
+        "Display which plants require a greenhouse for next day: /predict"
         
 
         // send sucess message

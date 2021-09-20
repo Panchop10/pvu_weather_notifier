@@ -1,8 +1,5 @@
 const models = require('../models');
-const stringFormat = require('../functions/stringFormat.js');
 const response = require('../functions/serviceUtil.js');
-
-const moment = require('moment');
 
 module.exports = {
     name: 'plants',
@@ -56,7 +53,7 @@ module.exports = {
         })
 
         if (!valid_weather){
-            const err = "Invalid PLANT_TYPE. Please check your command and try again."
+            const err = "Invalid PLANT_ELEMENT. Please check your command and try again."
             return response.sendTwilioMessage(err, res)
         }
         

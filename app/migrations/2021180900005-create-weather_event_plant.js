@@ -26,6 +26,14 @@ module.exports = {
           key: 'plant_type_id',
         },
       },
+      season_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'season',
+          key: 'season_id',
+        },
+      },
       created_at: {
         allowNull: false,
         type: DataTypes.DATE,

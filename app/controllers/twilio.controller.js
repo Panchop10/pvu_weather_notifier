@@ -53,8 +53,8 @@ module.exports = {
       }
 
       // check /prediction command
-      if (req.body.Body.startsWith("/prediction")){
-        return await commands.help.show(req, res)
+      if (req.body.Body.startsWith("/predict")){
+        return await commands.predict.index(req, res)
       }
 
       const welcome_message = "Welcome to PVU weather prediction notifier. \n"+
