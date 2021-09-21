@@ -104,8 +104,7 @@ dist
 .tern-port
 
 # Limerick Database
-app/__limerick_database/
-app/migrations/20200802100000-gioacademic-limerick.js
+app/seeders/2021210900001-custom_plants.js
 
 # MAC DS_STORE
 .DS_Store

@@ -112,7 +112,7 @@ module.exports = {
         }));
 
         if (counter_greenhouse === 0){
-            msg_prediction = "Based on probabilities, there is no need to put any greenhouse on your plants"
+            msg_prediction = "Based on probabilities, there is no need to put any plant in a greenhouse"
         }
 
         // send sucess message
