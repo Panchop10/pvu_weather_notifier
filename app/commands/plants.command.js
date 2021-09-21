@@ -23,7 +23,8 @@ module.exports = {
         // check if plant id is already registered
         const valid_plant = await models.plant.findOne({
             where: {
-                plant_id: parameters[0]
+                plant_id: parameters[0],
+                phone_number_id: req.body.phone_number_id,
             }
         })
 
